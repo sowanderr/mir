@@ -3,7 +3,8 @@ namespace common\models;
 
 use Yii;
 use yii\base\Model;
-
+require Yii::getAlias('@vendor') .'/adldap/adLDAP/src/adLDAP.php';
+use adLDAP\adLDAP; //include the adLDAP class
 /**
  * Login form
  */
@@ -53,7 +54,21 @@ class LoginForm extends Model
      *
      * @return boolean whether the user is logged in successfully
      */
+
     public function login()
+    {
+        $authUser = \Yii::$app->ldap->authenticate($this->username, $this->password);
+
+        if ($authUser)
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+
+        if ($this->validate())
+        {
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+        }
+        return false;
+    }
+   /** public function login()
     {
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
@@ -61,7 +76,7 @@ class LoginForm extends Model
             return false;
         }
     }
-
+**/
     /**
      * Finds user by [[username]]
      *

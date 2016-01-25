@@ -4,9 +4,19 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a7072836fe4302627bc4f89d23165898",
-    "content-hash": "e1929a97e872bdbaacc8530468eccb67",
+    "hash": "53b3f1f1cee828b19945592a462c4def",
+    "content-hash": "2ceb93934d6b60b813381fde3160acc2",
     "packages": [
+        {
+            "name": "adldap/adLDAP",
+            "version": "4.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/adldap/adLDAP",
+                "reference": "v4.0.4"
+            },
+            "type": "library"
+        },
         {
             "name": "bower-asset/bootstrap",
             "version": "v3.3.5",
@@ -272,6 +282,52 @@
                 "markdown-extra"
             ],
             "time": "2015-03-06 05:28:07"
+        },
+        {
+            "name": "edvlerblog/yii2-adldap-module",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/edvler/yii2-adldap-module.git",
+                "reference": "36cd78e2ebae3484fc8b394e38749a44b2969a74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/edvler/yii2-adldap-module/zipball/36cd78e2ebae3484fc8b394e38749a44b2969a74",
+                "reference": "36cd78e2ebae3484fc8b394e38749a44b2969a74",
+                "shasum": ""
+            },
+            "require": {
+                "adldap/adldap": "v4.0-stable"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "Edvlerblog\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias Maderer",
+                    "email": "edvler@edvler-blog.de",
+                    "homepage": "http://www.edvler-blog.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "yii2 adldap extention (wrapper for adldap/adLDAP Module)",
+            "homepage": "http://www.edvler-blog.de",
+            "keywords": [
+                "active directory",
+                "ad",
+                "adLDAP",
+                "ldap",
+                "yii2"
+            ],
+            "time": "2014-01-29 00:00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -913,7 +969,14 @@
             "time": "2015-05-10 22:09:31"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "4.0-stable",
+            "alias_normalized": "4.0.0.0",
+            "version": "4.0.4.0",
+            "package": "adldap/adldap"
+        }
+    ],
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,

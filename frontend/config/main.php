@@ -1,4 +1,4 @@
-<?php
+к <?php
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
     require(__DIR__ . '/../../common/config/params-local.php'),
@@ -12,14 +12,7 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-        'db' => [
-            'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=myii2',
-            'username' => 'root',
-            'password' => '123',
-            'charset' => 'utf8',
-        ],
-        'user' => [
+         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
         ],
