@@ -1,19 +1,6 @@
 <?php
-
-/* @var $this yii\web\View */
-
-use yii\helpers\Html;
-
-echo '<br>'. Yii::getAlias('@vendor') .'/adldap/adLDAP/src/adLDAP.php'.'<br>';
-$a = 'антон '.'<br>';
-base64_encode($a);
-echo '<br>';
-echo $a;
-echo base64_decode($a);
-echo $a;
 require Yii::getAlias('@vendor') .'/adldap/adLDAP/src/adLDAP.php';
-use yii\base\Component;
-use adldap\adLDAP;
+use Adldap\Adldap;
 
 $configuration = array(
     'user_id_key' => 'samaccountname',
@@ -33,21 +20,10 @@ $configuration = array(
 
 try
 {
-    $ad = new \adLDAP($configuration);
+    $ad = new Adldap($configuration);
 
     echo "Awesome, we're connected!";
 } catch(AdldapException $e)
 {
     echo "Uh oh, looks like we had an issue trying to connect: $e";
 }
-
-$this->title = 'About';
-$this->params['breadcrumbs'][] = $this->title;
-?>
-<div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>This is the About page. You may modify the following file to customize its content:</p>
-
-    <code><?= __FILE__ ?></code>
-</div>
