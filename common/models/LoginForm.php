@@ -3,13 +3,14 @@ namespace common\models;
 
 use Yii;
 use yii\base\Model;
+use yii\base\Component;
 require Yii::getAlias('@vendor') .'/adldap/adLDAP/src/adLDAP.php';
-use adLDAP\adLDAP; //include the adLDAP class
-/**
- * Login form
- */
+use adLDAP; //include the adLDAP class
+$adldap = new adLDAP($options);
+
 class LoginForm extends Model
 {
+
     public $username;
     public $password;
     public $rememberMe = true;
@@ -42,9 +43,9 @@ class LoginForm extends Model
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
-            $user = $this->getUser();
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+            $user = $this->getUserLdap();
+            if (!$user || !Yii::$app->ldap->authenticate($this->username,$this->password)) {
+                $this->addError($attribute, 'Incorrect username or passwords.');
             }
         }
     }

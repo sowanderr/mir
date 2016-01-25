@@ -3,7 +3,8 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
-
+$options = Yii::app()->params['ldap'];
+print $options;
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
