@@ -2,9 +2,9 @@
 
 /* @var $this yii\web\View */
 
-use yii\helpers\Html;
 
-echo '<br>'. Yii::getAlias('@vendor') .'/adldap/adLDAP/src/adLDAP.php'.'<br>';
+
+require Yii::getAlias('@vendor') .'/adldap/adLDAP/src/adLDAP.php';
 
 
 
@@ -24,15 +24,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <p>Не много о создателях:</p>
     <?php
-    $result = $adldap->user()->infoCollection("tolkushkin", array("*"));
-    echo "<br>";
-    echo $result->displayName;
-    echo "<br>";
-    echo $result->title;
-    echo "<br>";
-    echo $result->department;
-    echo "<br>";
-    echo $result->mail;
+    if (!\Yii::$app->user->isGuest) {
+        $result = $adldap->user()->infoCollection(Yii::$app->user->identity->username, array("*"));
+        echo "<br>";
+        echo $result->displayName;
+        echo "<br>";
+        echo $result->title;
+        echo "<br>";
+        echo $result->mail;
+        echo "<br>";
+        echo $result->department;
+        echo "<br>";
+        echo $result->samaccountname;
+        echo "<br>";
+    }
+
     ?>
 
     <code><?= __FILE__ ?></code>

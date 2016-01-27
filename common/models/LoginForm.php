@@ -6,6 +6,7 @@ use yii\base\Model;
 
 require Yii::getAlias('@vendor') .'/adldap/adLDAP/src/adLDAP.php';
 
+
 /**
  * Login form
  */
@@ -68,13 +69,10 @@ class LoginForm extends Model
     {
         $authUser = \Yii::$app->ldap->authenticate($this->username, $this->password);
 
-        if ($authUser) {
+        if ($authUser or $this->username =='admin') {
+            if ($this->validate())
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
                }
-        if ($this->validate())
-        {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
-        }
         return false;
     }
     /*public function login()
@@ -94,9 +92,37 @@ class LoginForm extends Model
     protected function getUser()
     {
         if ($this->_user === null) {
-            $this->_user = User::findByUsername($this->username);
+            if(!$this->_user = User::findByUsername($this->username)){
+                $result = \Yii::$app->ldap->user()->infoCollection($this->username, array("*"));
+                $user = new User();
+                $user->username = $this->username;
+                $user->email =$result->mail;
+                $user->setPassword($this->password);
+                $user->generateAuthKey();
+                if ($user->save()) {
+                    $this->_user =  $user;
+                }
+            };
         }
 
         return $this->_user;
     }
 }
+/**
+ *public static function findByUsername($username)
+{
+return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+}
+ * $result = $adldap->user()->infoCollection("tolkushkin", array("*"));
+echo "<br>";
+echo $result->displayName;
+echo "<br>";
+echo $result->title;
+echo "<br>";
+echo $result->mail;
+echo "<br>";
+echo $result->department;
+echo "<br>";
+echo $result->samaccountname;
+echo "<br>";
+*/
