@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
         echo "<br>";
         echo $result->samaccountname;
         echo "<br>";
+
     }
 
     ?>
