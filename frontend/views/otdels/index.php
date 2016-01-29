@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\OtdelsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Otdels';
+$this->title = 'Отделы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="otdels-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Otdels', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить Отдел', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

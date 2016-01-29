@@ -45,11 +45,11 @@ class Otdels extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'long_name' => 'Long Name',
-            'status' => 'Status',
-            'tehpol' => 'Tehpol',
-            'update_time' => 'Update Time',
+            'name' => 'Название отдела',
+            'long_name' => 'Полное название отдела',
+            'status' => 'Статус',
+            'tehpol' => 'Техническое поле',
+            'update_time' => 'Время апдейта',
         ];
     }
 }
