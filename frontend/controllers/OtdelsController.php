@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use app\models\Otdels;
-use frontend\models\OtdelsSearch;
+use app\models\OtdelsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
