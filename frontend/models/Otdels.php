@@ -13,6 +13,9 @@ use Yii;
  * @property integer $status
  * @property integer $tehpol
  * @property string $update_time
+ * @property integer $id_gr_oprp
+ *
+ * @property GrOprp $idGrOprp
  */
 class Otdels extends \yii\db\ActiveRecord
 {
@@ -30,8 +33,8 @@ class Otdels extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'long_name'], 'required'],
-            [['status', 'tehpol'], 'integer'],
+            [['name', 'long_name', 'id_gr_oprp'], 'required'],
+            [['status', 'tehpol', 'id_gr_oprp'], 'integer'],
             [['update_time'], 'safe'],
             [['name', 'long_name'], 'string', 'max' => 255],
             [['long_name'], 'unique']
@@ -45,11 +48,20 @@ class Otdels extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Название отдела',
-            'long_name' => 'Полное название отдела',
+            'name' => 'Название',
+            'long_name' => 'Полное наименование',
             'status' => 'Статус',
             'tehpol' => 'Техническое поле',
-            'update_time' => 'Время апдейта',
+            'update_time' => 'Время обновления',
+            'id_gr_oprp' => 'id, группы (ОПРП)',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdGrOprp()
+    {
+        return $this->hasOne(GrOprp::className(), ['id' => 'id_gr_oprp']);
     }
 }

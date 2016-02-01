@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Otdels */
 
-$this->title = 'Обновить Отдел: ' . ' ' . $model->name;
+$this->title = 'Обновить отдел: ' . ' ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Otdels', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Обновить';
+$this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="otdels-update">
 
@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = 'Обновить';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'idoprp' => $idoprp,
     ]) ?>
 
 </div>

@@ -8,6 +8,7 @@ use app\models\OtdelsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\GrOprp;
 
 /**
  * OtdelsController implements the CRUD actions for Otdels model.
@@ -58,7 +59,7 @@ class OtdelsController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+   /* public function actionCreate()
     {
         $model = new Otdels();
 
@@ -70,7 +71,19 @@ class OtdelsController extends Controller
             ]);
         }
     }
-
+*/
+    public function actionCreate()
+{
+    $model = new Otdels();
+    if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        return $this->redirect(['view', 'id' => $model->id]);
+    } else {
+        return $this->render('create', [
+            'model' => $model,
+            'idoprp' => GrOprp::find()->all()
+        ]);
+    }
+}
     /**
      * Updates an existing Otdels model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -86,6 +99,7 @@ class OtdelsController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'idoprp' => GrOprp::find()->all()
             ]);
         }
     }
@@ -115,7 +129,7 @@ class OtdelsController extends Controller
         if (($model = Otdels::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('Запрошенная вами страница, не существует.');
         }
     }
 }

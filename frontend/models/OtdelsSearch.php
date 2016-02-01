@@ -18,7 +18,7 @@ class OtdelsSearch extends Otdels
     public function rules()
     {
         return [
-            [['id', 'status', 'tehpol'], 'integer'],
+            [['id', 'status', 'tehpol', 'id_gr_oprp'], 'integer'],
             [['name', 'long_name', 'update_time'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class OtdelsSearch extends Otdels
             'status' => $this->status,
             'tehpol' => $this->tehpol,
             'update_time' => $this->update_time,
+            'id_gr_oprp' => $this->id_gr_oprp,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

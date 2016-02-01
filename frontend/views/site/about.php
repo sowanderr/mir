@@ -25,7 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <p>Не много о создателях:</p>
     <?php
     if (!\Yii::$app->user->isGuest) {
-        $result = $adldap->user()->infoCollection(Yii::$app->user->identity->username, array("*"));
+        //$result = $adldap->user()->infoCollection(Yii::$app->user->identity->username, array("*"));
+        $result = $adldap->user()->infoCollection("petrenko", array("*"));
         echo "<br>";
         echo $result->displayName;
         echo "<br>";
@@ -34,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
         echo $result->mail;
         echo "<br>";
         echo $result->department;
+
         echo "<br>";
         echo $result->samaccountname;
         echo "<br>";

@@ -17,19 +17,21 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'Название') ?>
+    <?= $form->field($model, 'name') ?>
 
-    <?= $form->field($model, 'Полное название') ?>
+    <?= $form->field($model, 'long_name') ?>
 
-    <?= $form->field($model, 'статус') ?>
+    <?= $form->field($model, 'status') ?>
 
-    <?= $form->field($model, 'техническое поле') ?>
+    <?= $form->field($model, 'tehpol') ?>
 
     <?php // echo $form->field($model, 'update_time') ?>
 
+    <?php // echo $form->field($model, 'id_gr_oprp') ?>
+
     <div class="form-group">
-        <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Сброс', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
