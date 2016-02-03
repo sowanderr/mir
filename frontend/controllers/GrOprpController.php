@@ -3,17 +3,16 @@
 namespace frontend\controllers;
 
 use Yii;
-use app\models\Otdels;
-use app\models\OtdelsSearch;
+use app\models\GrOprp;
+use app\models\GrOprpSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\GrOprp;
-use app;
+
 /**
- * OtdelsController implements the CRUD actions for Otdels model.
+ * GrOprpController implements the CRUD actions for GrOprp model.
  */
-class OtdelsController extends Controller
+class GrOprpController extends Controller
 {
     public function behaviors()
     {
@@ -28,23 +27,22 @@ class OtdelsController extends Controller
     }
 
     /**
-     * Lists all Otdels models.
+     * Lists all GrOprp models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new OtdelsSearch();
+        $searchModel = new GrOprpSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-
     }
 
     /**
-     * Displays a single Otdels model.
+     * Displays a single GrOprp model.
      * @param integer $id
      * @return mixed
      */
@@ -56,13 +54,13 @@ class OtdelsController extends Controller
     }
 
     /**
-     * Creates a new Otdels model.
+     * Creates a new GrOprp model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-   /* public function actionCreate()
+    public function actionCreate()
     {
-        $model = new Otdels();
+        $model = new GrOprp();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,21 +70,9 @@ class OtdelsController extends Controller
             ]);
         }
     }
-*/
-    public function actionCreate()
-{
-    $model = new Otdels();
-    if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        return $this->redirect(['view', 'id' => $model->id]);
-    } else {
-        return $this->render('create', [
-            'model' => $model,
-            'idoprp' => GrOprp::find()->all()
-        ]);
-    }
-}
+
     /**
-     * Updates an existing Otdels model.
+     * Updates an existing GrOprp model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -100,13 +86,12 @@ class OtdelsController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'idoprp' => GrOprp::find()->all()
             ]);
         }
     }
 
     /**
-     * Deletes an existing Otdels model.
+     * Deletes an existing GrOprp model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -119,31 +104,18 @@ class OtdelsController extends Controller
     }
 
     /**
-     * Finds the Otdels model based on its primary key value.
+     * Finds the GrOprp model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Otdels the loaded model
+     * @return GrOprp the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Otdels::findOne($id)) !== null) {
+        if (($model = GrOprp::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('Запрошенная вами страница, не существует.');
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    public function actionPdf()
-    {   $searchModel = new OtdelsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        $html = $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider]);
-        $pdf = Yii::$app->pdf;
-        $pdf->content = $html;
-        return $pdf->render();
-
-           }
-
 }

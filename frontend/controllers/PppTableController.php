@@ -3,17 +3,16 @@
 namespace frontend\controllers;
 
 use Yii;
-use app\models\Otdels;
-use app\models\OtdelsSearch;
+use app\models\PppTable;
+use app\models\PppTableSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\GrOprp;
-use app;
+
 /**
- * OtdelsController implements the CRUD actions for Otdels model.
+ * PppTableController implements the CRUD actions for PppTable model.
  */
-class OtdelsController extends Controller
+class PppTableController extends Controller
 {
     public function behaviors()
     {
@@ -28,23 +27,22 @@ class OtdelsController extends Controller
     }
 
     /**
-     * Lists all Otdels models.
+     * Lists all PppTable models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new OtdelsSearch();
+        $searchModel = new PppTableSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-
     }
 
     /**
-     * Displays a single Otdels model.
+     * Displays a single PppTable model.
      * @param integer $id
      * @return mixed
      */
@@ -56,37 +54,25 @@ class OtdelsController extends Controller
     }
 
     /**
-     * Creates a new Otdels model.
+     * Creates a new PppTable model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-   /* public function actionCreate()
+    public function actionCreate()
     {
-        $model = new Otdels();
+        $model = new PppTable();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id_oper]);
         } else {
             return $this->render('create', [
                 'model' => $model,
             ]);
         }
     }
-*/
-    public function actionCreate()
-{
-    $model = new Otdels();
-    if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        return $this->redirect(['view', 'id' => $model->id]);
-    } else {
-        return $this->render('create', [
-            'model' => $model,
-            'idoprp' => GrOprp::find()->all()
-        ]);
-    }
-}
+
     /**
-     * Updates an existing Otdels model.
+     * Updates an existing PppTable model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,17 +82,16 @@ class OtdelsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id_oper]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'idoprp' => GrOprp::find()->all()
             ]);
         }
     }
 
     /**
-     * Deletes an existing Otdels model.
+     * Deletes an existing PppTable model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -119,31 +104,38 @@ class OtdelsController extends Controller
     }
 
     /**
-     * Finds the Otdels model based on its primary key value.
+     * Finds the PppTable model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Otdels the loaded model
+     * @return PppTable the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Otdels::findOne($id)) !== null) {
+        if (($model = PppTable::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('Запрошенная вами страница, не существует.');
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    public function actionPdf()
-    {   $searchModel = new OtdelsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    public function actionMass()
+    {
 
-        $html = $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider]);
-        $pdf = Yii::$app->pdf;
-        $pdf->content = $html;
-        return $pdf->render();
+        $model = new PppTable();
 
-           }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->db->createCommand()->batchInsert('ppp_table', ['name_s','name_m','name_o','ocenka', 'com'], [
+                ['asd','asd','asd',4.5, 30],
+                ['asd','asd','asd',4.5, 30],
+                ['asd','asd','asd',4.5, 30],
+            ])->execute();
+            return $this->redirect(['view', 'id' => $model->id_oper]);
+        } else {
+            return $this->render('mass', [
+                'model' => $model,
+            ]);
 
+        }
+
+    }
 }

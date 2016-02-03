@@ -29,7 +29,7 @@ class SiteController extends Controller
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
+                        'actions' => ['signup','captcha','login'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -38,6 +38,7 @@ class SiteController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+
                 ],
             ],
             'verbs' => [
@@ -61,8 +62,8 @@ class SiteController extends Controller
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
-
-                //'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                //'backColor' => 0xFFFFFF,
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
     }
