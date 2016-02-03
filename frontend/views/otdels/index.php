@@ -17,9 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Добавить Отдел', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('тык', ['pdf'], ['class' => 'btn btn-success']) ?>
+
     </p>
-    <? echo Html::img(Yii::getAlias('@web').'/css/tt.png', ['width' => '100%']);?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

@@ -1,9 +1,10 @@
 <?php
 namespace backend\controllers;
-
 use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
+use backend\models\UploadForm;
+use yii\web\UploadedFile;
+use yii\filters\AccessControl;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
 
@@ -26,7 +27,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'upload','pdf'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -79,5 +80,31 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+    public function actionUpload()
+    {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                return $this->render('index');
+            }
+        }
+
+        return $this->render('upload', ['model' => $model]);
+    }
+    public function actionPdf()
+    {   //$searchModel = new OtdelsSearch();
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $html = $this->render('index', ['model' => $model);
+            //'searchModel' => $searchModel,
+            //'dataProvider' => $dataProvider]);
+        $pdf = Yii::$app->pdf;
+        $pdf->content = $html;
+        return $pdf->render();
+
     }
 }

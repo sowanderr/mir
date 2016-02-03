@@ -1,4 +1,5 @@
 <?php
+use kartik\mpdf\Pdf;
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
     require(__DIR__ . '/../../common/config/params-local.php'),
@@ -13,6 +14,17 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
+        'pdf' => [
+            'class' => Pdf::classname(),
+            'format' => Pdf::FORMAT_A4,
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            'destination' => Pdf::DEST_BROWSER,
+            'methods' => [
+                'SetHeader'=>['Антон Сука Молодец'],
+                'SetFooter'=>['{PAGENO}'],
+            ]
+            // refer settings section for all configuration options
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

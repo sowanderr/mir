@@ -133,17 +133,6 @@ class OtdelsController extends Controller
             throw new NotFoundHttpException('Запрошенная вами страница, не существует.');
         }
     }
-    public function actionPdf()
-    {   $searchModel = new OtdelsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $html = $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider]);
-        $pdf = Yii::$app->pdf;
-        $pdf->content = $html;
-        return $pdf->render();
-
-           }
 
 }
