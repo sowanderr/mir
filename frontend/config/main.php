@@ -7,12 +7,22 @@ $params = array_merge(
 );
 
 return [
+    'homeUrl' => '/',
     'language' => 'ru-RU',
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'request' => [
+            'baseUrl' => '',
+            ],
+        'urlManager' => [
+            'enablePrettyUrl' => false,
+            'showScriptName' => true,
+        ],
+
+
 
          'user' => [
             'identityClass' => 'common\models\User',

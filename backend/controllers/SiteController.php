@@ -1,5 +1,6 @@
 <?php
 namespace backend\controllers;
+use backend\models\Dir;
 use Yii;
 use yii\web\Controller;
 use backend\models\UploadForm;
@@ -7,6 +8,8 @@ use yii\web\UploadedFile;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
+use yii\helpers\FileHelper;
+use app;
 
 /**
  * Site controller
@@ -27,7 +30,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'upload','pdf'],
+                        'actions' => ['logout', 'index', 'upload','pdf','show'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -99,12 +102,19 @@ class SiteController extends Controller
     {   //$searchModel = new OtdelsSearch();
         //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $html = $this->render('index', ['model' => $model);
+        $html = $this->render('show');
             //'searchModel' => $searchModel,
             //'dataProvider' => $dataProvider]);
         $pdf = Yii::$app->pdf;
         $pdf->content = $html;
         return $pdf->render();
 
+    }
+    public function actionShow(){
+
+            $model = FileHelper::findFiles('./uploads');
+
+
+        return $this->render('show', ['model'=> $model]);
     }
 }
