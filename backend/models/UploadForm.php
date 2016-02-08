@@ -11,10 +11,11 @@ class UploadForm extends Model
      */
     public $imageFiles;
 
+
     public function rules()
     {
         return [
-            [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, pdf', 'maxFiles' => 20],
+            [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 20],
         ];
     }
     public function attributeLabels()

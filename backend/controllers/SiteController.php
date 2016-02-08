@@ -112,10 +112,11 @@ class SiteController extends Controller
 
     }
     public function actionShow(){
-            $this->layout = 'pdf';
+            //$this->layout = 'pdf';
             $model = FileHelper::findFiles('./uploads');
 
 
         return $this->render('show', ['model'=> $model]);
     }
+
 }

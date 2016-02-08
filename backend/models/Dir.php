@@ -7,11 +7,9 @@ use yii\helpers\FileHelper;
 
 class Dir extends Model
 {
-public $dir;
+public $value;
 
-    public function Show()
-    {
-        $this->dir = FileHelper::findFiles('/');
-        return $this->dir;
-    }
+
+
+
 }
