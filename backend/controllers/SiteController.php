@@ -16,6 +16,7 @@ use app;
  */
 class SiteController extends Controller
 {
+    public $layout = 'main';
     /**
      * @inheritdoc
      */
@@ -101,7 +102,7 @@ class SiteController extends Controller
     public function actionPdf()
     {   //$searchModel = new OtdelsSearch();
         //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $this->layout = 'pdf';
         $html = $this->render('show');
             //'searchModel' => $searchModel,
             //'dataProvider' => $dataProvider]);
@@ -111,7 +112,7 @@ class SiteController extends Controller
 
     }
     public function actionShow(){
-
+            $this->layout = 'pdf';
             $model = FileHelper::findFiles('./uploads');
 
 

@@ -17,7 +17,13 @@ class UploadForm extends Model
             [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, pdf', 'maxFiles' => 20],
         ];
     }
+    public function attributeLabels()
+    {
+        return [
+            'imageFiles' => 'Картинки',
 
+        ];
+    }
     public function upload()
     {
         if ($this->validate()) {

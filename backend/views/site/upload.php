@@ -9,7 +9,8 @@ use yii\helpers\Html;
 
 <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
 
-    <button>Submit</button>
-
-<?php ActiveForm::end() ?>
+    <button class="btn btn-default">Загрузить</button>
+<hr>
 <?= Html::a('тык', ['pdf'], ['class' => 'btn btn-success']) ?>
+<?php ActiveForm::end() ?>
+
