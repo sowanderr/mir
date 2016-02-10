@@ -6,7 +6,7 @@ use dosamigos\ckeditor\CKEditorInline;
 ?>
 
 
-<div class="container-fluid" style="background-image: url(http://grandwallpapers.net/photo/znak-alyansa-world-of-warcraft-1920x1200.jpg); background-repeat: repeat;">
+<div class="container-fluid" >
     <div class="span12"
     <?php CKEditorInline::begin(['preset' => 'full']);?>
     осн

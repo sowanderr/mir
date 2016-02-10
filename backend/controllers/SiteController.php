@@ -1,6 +1,6 @@
 <?php
 namespace backend\controllers;
-use backend\models\Dir;
+use backend\models\BgForm;
 use Yii;
 use yii\web\Controller;
 use backend\models\UploadForm;
@@ -31,7 +31,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'upload','pdf','show'],
+                        'actions' => ['logout', 'index', 'upload','pdf','bg'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -93,12 +93,35 @@ class SiteController extends Controller
             $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
             if ($model->upload()) {
                 // file is uploaded successfully
-                return $this->render('index');
+                return $this->render('upload', ['model' => $model]);
             }
         }
 
+
         return $this->render('upload', ['model' => $model]);
     }
+    public function actionBg()
+    {
+        $model = new BgForm();
+
+        if ($model->load(Yii::$app->request->post('BgForm[11.jpg]'))) {
+            Yii::$app->session->setFlash(
+                'success',
+                'Спасибо за ваше письмо. Мы свяжемся с вами в ближайшее время.'
+            )
+            ;
+          //$model->value = Yii::$app->request->Post('BgForm[value]');
+
+
+            // file is uploaded successfully
+                return $this->render('bg', ['model' => $model]);
+
+        }
+
+
+        return $this->render('bg', ['model' => $model]);
+    }
+
     public function actionPdf()
     {   //$searchModel = new OtdelsSearch();
         //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);

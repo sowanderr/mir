@@ -10,12 +10,13 @@ class UploadForm extends Model
      * @var UploadedFile[]
      */
     public $imageFiles;
-
-
+    public $checkboxList;
+    //public $value = '07.jpg';
     public function rules()
     {
         return [
             [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 20],
+
         ];
     }
     public function attributeLabels()
@@ -36,4 +37,6 @@ class UploadForm extends Model
             return false;
         }
     }
+
+
 }
