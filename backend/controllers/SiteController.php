@@ -104,7 +104,7 @@ class SiteController extends Controller
     {
         $model = new BgForm();
 
-        if ($model->load(Yii::$app->request->post('BgForm[11.jpg]'))) {
+        if ($model->load(Yii::$app->request->post()) || $model->bg()) {
             Yii::$app->session->setFlash(
                 'success',
                 'Спасибо за ваше письмо. Мы свяжемся с вами в ближайшее время.'
@@ -116,10 +116,11 @@ class SiteController extends Controller
             // file is uploaded successfully
                 return $this->render('bg', ['model' => $model]);
 
+        }else {
+
+
+            return $this->render('bg', ['model' => $model]);
         }
-
-
-        return $this->render('bg', ['model' => $model]);
     }
 
     public function actionPdf()

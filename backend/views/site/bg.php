@@ -1,6 +1,6 @@
 <?php
 use yii\bootstrap\ActiveForm;
-
+use yii\helpers\Html;
 use yii\helpers\Url;
 
 /**
@@ -18,10 +18,10 @@ $form = ActiveForm::begin([
     'options' => ['class' => 'form-horizontal'],
 ]);
 ?><div>
-    <?
-foreach ($s1 as $value) {
+    <?php
+    foreach ($s1 as $value) {
 
-    echo '<div class="col-sm-2"><a href="./uploads/'.$value.'">';
+    echo '<div class="col-lg-3"><a href="../web/uploads/'.$value.'">';
     echo '<IMG src="./uploads/' . $value . '" class = "img-thumbnail" WIDTH="70%" HEIGHT="70%" align="left" ;">';
     echo substr($value, -12);
 
@@ -32,12 +32,14 @@ foreach ($s1 as $value) {
     echo $form->field($model, 'value')
         ->radioList([
             $value=>$s,
-        ]); echo '</div>';
+        ]);
 
+    //echo Html::a('Зафонить', ['sbg'], ['class' => 'btn btn-success']);
+    echo '</div>';
 }
 //print_r($s1);
 echo $model->value;
-    echo $model->checkboxList;
+    //echo $model->checkboxList;
 
 //echo  Html::submitButton('Установить фон', ['class' => 'btn btn-primary', 'name' => 'bg']);
  ?>
