@@ -29,9 +29,10 @@ class BgForm extends Model
              );
 
                 // делаем что-то, если форма прошла валидацию
-                return true ;
+
 
         }
+        return true ;
     }
     public function setDir(){
         $dir = './uploads';

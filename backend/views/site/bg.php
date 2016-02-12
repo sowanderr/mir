@@ -13,15 +13,17 @@ $dir = './uploads';
 $s1 = scandir($dir);
 $s1 = array_slice($s1,2);
 $s = '1';
-$form = ActiveForm::begin([
-    'id' => 'bg-form',
+?>
+<div class="site-bg"></div>
+<?php $form = ActiveForm::begin([
+    'id' => 'bg',
     'options' => ['class' => 'form-horizontal'],
 ]);
 ?><div>
     <?php
     foreach ($s1 as $value) {
 
-    echo '<div class="col-lg-3"><a href="../web/uploads/'.$value.'">';
+    echo '<div class="col-lg-3"><a href="./uploads'.$value.'">';
     echo '<IMG src="./uploads/' . $value . '" class = "img-thumbnail" WIDTH="70%" HEIGHT="70%" align="left" ;">';
     echo substr($value, -12);
 
@@ -36,9 +38,10 @@ $form = ActiveForm::begin([
 
     //echo Html::a('Зафонить', ['sbg'], ['class' => 'btn btn-success']);
     echo '</div>';
+        echo 123;
 }
 //print_r($s1);
-echo $model->value;
+
     //echo $model->checkboxList;
 
 //echo  Html::submitButton('Установить фон', ['class' => 'btn btn-primary', 'name' => 'bg']);

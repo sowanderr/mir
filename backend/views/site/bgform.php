@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\BgForm */
@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
         <?php
         foreach ($model->dir as $value) {
 
-            echo '<div class="col-lg-3"><a href="../web/uploads/'.$value.'">';
+            echo '<div class="col-lg-3"><a href="./uploads/'.$value.'">';
             echo '<IMG src="./uploads/' . $value . '" class = "img-thumbnail" WIDTH="70%" HEIGHT="70%" align="left" ;">';
             echo substr($value, -12);
 
@@ -35,5 +35,6 @@ use yii\widgets\ActiveForm;
             <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
-
+</div>
 </div><!-- site-bgform -->
+<?php echo $model->value;?>
