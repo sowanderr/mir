@@ -2,6 +2,8 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use backend\models\BgForm;
+
 
 /**
  * Created by PhpStorm.
@@ -19,11 +21,12 @@ $s = '1';
     'id' => 'bg',
     'options' => ['class' => 'form-horizontal'],
 ]);
+//$model->value = '07.jpg';
 ?><div>
     <?php
     foreach ($s1 as $value) {
 
-    echo '<div class="col-lg-3"><a href="./uploads'.$value.'">';
+    echo '<div class="col-lg-3"><a href="./uploads/'.$value.'">';
     echo '<IMG src="./uploads/' . $value . '" class = "img-thumbnail" WIDTH="70%" HEIGHT="70%" align="left" ;">';
     echo substr($value, -12);
 
@@ -33,19 +36,20 @@ $s = '1';
     //echo '<label><input type="checkbox" value="'.$value.'">фон</label></div>' ;
     echo $form->field($model, 'value')
         ->radioList([
-            $value=>$s,
+            $s=>$value,
         ]);
 
     //echo Html::a('Зафонить', ['sbg'], ['class' => 'btn btn-success']);
     echo '</div>';
-        echo 123;
+$s++;
+
 }
 //print_r($s1);
 
     //echo $model->checkboxList;
 
 //echo  Html::submitButton('Установить фон', ['class' => 'btn btn-primary', 'name' => 'bg']);
- ?>
+ echo $model->value ?>
 <button class="btn btn-default">Загрузить</button>
 
 

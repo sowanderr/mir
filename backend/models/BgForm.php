@@ -8,30 +8,24 @@ use yii\helpers\FileHelper;
 class BgForm extends Model
 {
     public $dir;
-    public $value ;
+    public $value;
+    public $value2;
     public function rules()
     {
         return [
            // [['checkboxList'], 'required'],
-           //[['value'], 'required'],
+          [['value2'], 'required'],
         ];
     }
-    public function bg()
+    public function BgForm()
     {
-        $model = new BgForm();
 
-         if ($model->load(Yii::$app->request->post())) {
 
-             $this->value = '07.jpg';
-             Yii::$app->session->setFlash(
-                 'success',
-                 'Спасибо за ваше Model BgForm.'
-             );
 
                 // делаем что-то, если форма прошла валидацию
 
 
-        }
+
         return true ;
     }
     public function setDir(){
