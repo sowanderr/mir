@@ -105,14 +105,16 @@ class SiteController extends Controller
         $model = new BgForm();
 
         if ($model->load(Yii::$app->request->post())&& $model->validate()) {
-            $model->value = Yii::$app->request->post('value2');
-           if( $model->value == Yii::$app->request->post('value2')) {
+
+           if( 1) {
+               //$model->value = '123';
                Yii::$app->session->setFlash(
                    'success',
                    'Спасибо все ок '
                );
+
            }
-            $model->value = Yii::$app->request->post('value2') ;
+            //$model->value = Yii::$app->request->post('value2') ;
 
 
         }

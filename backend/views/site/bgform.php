@@ -13,45 +13,43 @@ use yii\helpers\Url;
     <?php $form = ActiveForm::begin(); ?>
     <div>
         <?php
-        $s = 1;
+
         $model->setDir();
         $model->BgForm();
-        $m = $model->dir;
-        foreach ($m as $value) {
-
+        foreach ($model->dir as $value) {
+            echo '<div class="cke_button__radio_icon">';
             echo '<div class="col-sm-3"><a href="./uploads/'.$value.'">';
-            echo '<IMG src="./uploads/' . $value . '" class = "img-thumbnail" WIDTH="70%" HEIGHT="70%" align="left" ;">';
-            echo substr($value, -12);
+            echo '<IMG src="./uploads/' . $value . '" class = "img-thumbnail" WIDTH="50%" HEIGHT="50%" align="left" ;">';
+            echo substr($value, -12); //сокращаем изображаемое название на 12 символов
 
-            echo '<div class="checkbox">';
+
 
             echo '</a></div>';
-            //echo '<label><input type="checkbox" value="'.$value.'">фон</label></div>' ;
-            echo $form->field($model, 'value')
-              ->radioList([
-                $value=>$s,
+            echo $form->field($model, 'value[]')
+              ->radio([
+                 'value'=>$value
             ]);
 
 
-            //echo Html::a('Зафонить', ['sbg'], ['class' => 'btn btn-success']);
-           $s++;
+
+
             echo '</div>';
         }
-        echo $form->field($model, 'value2')
-            ->textInput();
         ?>
     
-        <div class="form-group">
-            <?= Html::submitButton('Bg', ['class' => 'btn btn-success']) ?>
+        <div class="site-bgform">
+            <?= Html::submitButton('Поехали (как Гагарин)', ['class' => 'btn btn-primary']) ?>
         </div>
-        <div class="container-fluid" style="background-image: url(<?php echo Url::to("./uploads/$value")?>); ">
+        <div class="container" style="background-image: url(<?php echo Url::to("uploads/$model->value")?>); background-color: #c7b39b; min-height: 200px; background-size: 100%; background-repeat: no-repeat;">
+            1123
         </div>
+
     <?php ActiveForm::end(); ?>
 </div>
 
 </div><!-- site-bgform -->
-<?php var_dump($model->value2);
-var_dump($model->value);
+<?php
+print_r($model->value);
 
 
 ?>

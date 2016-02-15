@@ -2,29 +2,23 @@
 namespace backend\models;
 use yii;
 use yii\base\Model;
-use yii\helpers\FileHelper;
+
 
 
 class BgForm extends Model
 {
     public $dir;
     public $value;
-    public $value2;
     public function rules()
     {
         return [
-           // [['checkboxList'], 'required'],
-          [['value2'], 'required'],
+            [['value'], 'required'],
+
         ];
     }
     public function BgForm()
     {
-
-
-
-                // делаем что-то, если форма прошла валидацию
-
-
+       $this->value = array_shift(array_reverse(array_unique($this->value))); // оставляем уникальные значения масива, переварачиваем, извлекаем первый.
 
         return true ;
     }
