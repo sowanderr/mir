@@ -18,8 +18,8 @@ class BgForm extends Model
     }
     public function BgForm()
     {
-       $this->value = array_shift(array_reverse(array_unique($this->value))); // оставляем уникальные значения масива, переварачиваем, извлекаем первый.
-
+       $this->value = array_shift(array_reverse(array_unique($this->value))); // оставляем уникальные значения масива, переварачиваем, извлекаем первый. + экранируем от пробелов
+        $this->value =  addcslashes($this->value, ' ');
         return true ;
     }
     public function setDir(){

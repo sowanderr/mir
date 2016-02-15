@@ -17,7 +17,7 @@ use yii\helpers\Url;
         $model->setDir();
         $model->BgForm();
         foreach ($model->dir as $value) {
-            echo '<div class="cke_button__radio_icon">'; 
+            echo '<div class="cke_button__radio_icon">';
             echo '<div class="col-sm-3"><a href="./uploads/'.$value.'">';
             echo '<IMG src="./uploads/' . $value . '" class = "img-thumbnail" WIDTH="50%" HEIGHT="50%" align="left" ;">';
             echo substr($value, -12); //сокращаем изображаемое название на 12 символов
@@ -49,8 +49,10 @@ use yii\helpers\Url;
 
 </div><!-- site-bgform -->
 <?php
-print_r($model->value);
+var_dump($model->value);
+$s = ' ';
 
+echo addcslashes('fo o[  ]', ' ');
 
 ?>
 
