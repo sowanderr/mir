@@ -7,7 +7,7 @@ use dosamigos\ckeditor\CKEditorInline;
 
 
 <div class="container-fluid" >
-    <div class="span12"
+    <div class="span12">
     <?php CKEditorInline::begin(['preset' => 'full']);?>
     осн
     <?php CKEditorInline::end();?>

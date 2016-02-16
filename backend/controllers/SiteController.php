@@ -31,7 +31,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'upload','pdf','bg'],
+                        'actions' => ['logout', 'index', 'upload','pdf','bg','show'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

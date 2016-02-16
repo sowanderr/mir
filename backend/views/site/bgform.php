@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
+use dosamigos\ckeditor\CKEditorInline;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\BgForm */
@@ -17,14 +18,14 @@ use yii\helpers\Url;
         $model->setDir();
         $model->BgForm();
         foreach ($model->dir as $value) {
-            echo '<div class="cke_button__radio_icon">';
-            echo '<div class="col-sm-3"><a href="./uploads/'.$value.'">';
-            echo '<IMG src="./uploads/' . $value . '" class = "img-thumbnail" WIDTH="50%" HEIGHT="50%" align="left" ;">';
-            echo substr($value, -12); //сокращаем изображаемое название на 12 символов
+            echo '<div>';
+            echo '<div class="col-sm-3"><a href="./uploads/'.$value.'"><IMG src="./uploads/' . $value . '" class = "img" WIDTH="100%" HEIGHT="200px" align="left" >';
+
+            //echo substr($value, -12); //сокращаем изображаемое название на 12 символов
 
 
 
-            echo '</a></div>';
+            echo '</a>';
             echo $form->field($model, 'value[]')
               ->radio([
                  'value'=>$value
@@ -34,25 +35,28 @@ use yii\helpers\Url;
 
 
             echo '</div>';
+            echo '</div>';
         }
         ?>
     
         <div class="site-bgform">
             <?= Html::submitButton('Поехали (как Гагарин)', ['class' => 'btn btn-primary']) ?>
         </div>
-        <div class="container" style="background-image: url(<?php echo Url::to("uploads/$model->value")?>); background-color: #c7b39b; min-height: 200px; background-size: 100%; background-repeat: no-repeat;">
-            1123
-        </div>
-
     <?php ActiveForm::end(); ?>
-</div>
 
+
+</div>
 </div><!-- site-bgform -->
+    <div class="col-lg-12" style="background-image: url(<?php echo Url::to("uploads/$model->value")?>); background-color: #c7b39b; min-height: 200px; background-size: 100%; background-repeat: no-repeat; position: relative">
+        <?php CKEditorInline::begin(['preset' => 'basic']);?><div class="col-lg-2">
+            basic
+        </div>
+        <?php CKEditorInline::end();?>
+    </div>
+
+
 <?php
 var_dump($model->value);
-$s = ' ';
-
-echo addcslashes('fo o[  ]', ' ');
 
 ?>
 

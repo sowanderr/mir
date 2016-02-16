@@ -8,7 +8,7 @@ use yii\base\Model;
 class BgForm extends Model
 {
     public $dir;
-    public $value;
+    public $value= [];
     public function rules()
     {
         return [
