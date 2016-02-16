@@ -47,16 +47,45 @@ use dosamigos\ckeditor\CKEditorInline;
 
 </div>
 </div><!-- site-bgform -->
-    <div class="col-lg-12" style="background-image: url(<?php echo Url::to("uploads/$model->value")?>); background-color: #c7b39b; min-height: 200px; background-size: 100%; background-repeat: no-repeat; position: relative">
-        <?php CKEditorInline::begin(['preset' => 'basic']);?><div class="col-lg-2">
-            basic
+    <div class="" style="background-image: url(<?php echo Url::to("uploads/$model->value")?>); background-color: #c7b39b; min-height: 200px; background-size: 100%; background-repeat: no-repeat; position: relative">
+        <?php CKEditorInline::begin(['preset' => 'full']);?><div class="col-lg-2">
+            <div><p id = layer1>
+                basicsda
+
+            <p id = layer2>
+                basicsda
+                </p>
+                </div>
+            <?php CKEditorInline::end();?>
+             <style>
+                #layer1, #layer2, #layer3, #layer4 {
+                    position: relative; /* Относительное позиционирование */
+                }
+                #layer1, #layer3 {
+                    font-size: 50px; /* Размер шрифта в пикселах */
+                    color: #000080; /* Синий цвет текста */
+                }
+                #layer2, #layer4 {
+                    top: -55px; /* Сдвигаем текст вверх */
+                    left: 5px; /* Сдвигаем текст вправо */
+                    color: #ffa500; /* Оранжевый цвет текста */
+                    font-size:70px;  /* Размер шрифта в пикселах */
+                }
+                #layer1 { z-index: 2; }
+                #layer2 { z-index: 1; }
+                #layer3 { z-index: 3; }
+                #layer4 { z-index: 4; }
+            </style>>
+
+            </div>
         </div>
-        <?php CKEditorInline::end();?>
+
     </div>
 
 
 <?php
-var_dump($model->value);
+$m = ['0' => 'хуй','1'=>1 ];
+var_dump($m);
 
 ?>
 
