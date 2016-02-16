@@ -44,43 +44,26 @@ use dosamigos\ckeditor\CKEditorInline;
         </div>
     <?php ActiveForm::end(); ?>
 
-
+        <?= Html::a('тык', ['bg'], ['class' => 'btn btn-success']) ?>
 </div>
 </div><!-- site-bgform -->
-    <div class="" style="background-image: url(<?php echo Url::to("uploads/$model->value")?>); background-color: #c7b39b; min-height: 200px; background-size: 100%; background-repeat: no-repeat; position: relative">
-        <?php CKEditorInline::begin(['preset' => 'full']);?><div class="col-lg-2">
-            <div><p id = layer1>
+    <div class="col-lg-12" style="width:100%;height:100%; z-index:1; padding-right: 100px; background-image: url(<?php echo Url::to("uploads/$model->value")?>); background-color: #c7b39b; min-height: 200px; background-size: 100%; background-repeat: no-repeat; position:relative;">
+        <?php CKEditorInline::begin(['preset' => 'full']);?>
+            <div class="col-lg-4" style="width:700px;height:100px;position:absolute;background-color:yellow;top:80px;left:80px;z-index:2;opacity:0.5;border:1px solid #333333;">
+                <p style="position: inherit">basicsda
                 basicsda
-
-            <p id = layer2>
-                basicsda
-                </p>
+</p>
                 </div>
+            <div  class="col-lg-4" style="width:900px;height:200px;position:absolute;background-color:yellow;top:80px;left:80px;z-index:3;opacity:0.5;border:1px solid #333333;">
+            <p style="position: inherit">asda</p>
+            </div>
+        <?php// include div ?>
             <?php CKEditorInline::end();?>
-             <style>
-                #layer1, #layer2, #layer3, #layer4 {
-                    position: relative; /* Относительное позиционирование */
-                }
-                #layer1, #layer3 {
-                    font-size: 50px; /* Размер шрифта в пикселах */
-                    color: #000080; /* Синий цвет текста */
-                }
-                #layer2, #layer4 {
-                    top: -55px; /* Сдвигаем текст вверх */
-                    left: 5px; /* Сдвигаем текст вправо */
-                    color: #ffa500; /* Оранжевый цвет текста */
-                    font-size:70px;  /* Размер шрифта в пикселах */
-                }
-                #layer1 { z-index: 2; }
-                #layer2 { z-index: 1; }
-                #layer3 { z-index: 3; }
-                #layer4 { z-index: 4; }
-            </style>>
 
             </div>
-        </div>
 
-    </div>
+
+
 
 
 <?php

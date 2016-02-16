@@ -31,7 +31,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'upload','pdf','bg','show'],
+                        'actions' => ['logout', 'index', 'upload','pdf','bg','show','div'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -131,6 +131,12 @@ class SiteController extends Controller
         $pdf = Yii::$app->pdf;
         $pdf->content = $html;
         return $pdf->render();
+
+    }
+    public function actionDiv()
+    {
+        $model = new BgForm();
+        return $this->render('bgform', ['model' => $model]);
 
     }
     public function actionShow(){
