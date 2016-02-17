@@ -4,14 +4,19 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use dosamigos\ckeditor\CKEditorInline;
-
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $model backend\models\BgForm */
 /* @var $form ActiveForm */
 ?>
+<?php Pjax::begin(); ?>
 <div class="site-bgform">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => [
+        'data-pjax' => '1'
+    ],
+        'id' => 'bg-form'
+    ]); ?>
     <div>
         <?php
 
@@ -30,34 +35,35 @@ use dosamigos\ckeditor\CKEditorInline;
               ->radio([
                  'value'=>$value
             ]);
-
-
-
-
             echo '</div>';
             echo '</div>';
         }
+
         ?>
-    
+        <div class="col-sm-2">
+        <?= $form->field($model, 'min') ?>
+        <?= $form->field($model, 'divn') ?>
+        </div>
         <div class="site-bgform">
             <?= Html::submitButton('Поехали (как Гагарин)', ['class' => 'btn btn-primary']) ?>
         </div>
+
     <?php ActiveForm::end(); ?>
 
-        <?= Html::a('тык', ['bg'], ['class' => 'btn btn-success']) ?>
+
 </div>
 </div><!-- site-bgform -->
-    <div class="col-lg-12" style="width:100%;height:100%; z-index:1; padding-right: 100px; background-image: url(<?php echo Url::to("uploads/$model->value")?>); background-color: #c7b39b; min-height: 200px; background-size: 100%; background-repeat: no-repeat; position:relative;">
+    <div class="col-lg-12" style="width:100%;height:100%; z-index:1; padding-right: 100px; background-image: url(<?php echo Url::to("uploads/$model->value")?>); background-color: #c7b39b; min-height: <?= Html::encode($model->min)?>px; background-size: 100%; background-repeat: no-repeat; ">
         <?php CKEditorInline::begin(['preset' => 'full']);?>
-            <div class="col-lg-4" style="width:700px;height:100px;position:absolute;background-color:yellow;top:80px;left:80px;z-index:2;opacity:0.5;border:1px solid #333333;">
-                <p style="position: inherit">basicsda
-                basicsda
-</p>
-                </div>
-            <div  class="col-lg-4" style="width:900px;height:200px;position:absolute;background-color:yellow;top:80px;left:80px;z-index:3;opacity:0.5;border:1px solid #333333;">
-            <p style="position: inherit">asda</p>
-            </div>
-        <?php// include div ?>
+            <?php
+
+
+
+            for($a=1;$a<=$model->divn;$a++) {
+            echo $model->div;
+            }
+        ?>
+
             <?php CKEditorInline::end();?>
 
             </div>
@@ -67,8 +73,9 @@ use dosamigos\ckeditor\CKEditorInline;
 
 
 <?php
-$m = ['0' => 'хуй','1'=>1 ];
-var_dump($m);
+
+//var_dump($model->divn);
 
 ?>
 
+<?php Pjax::end(); ?>

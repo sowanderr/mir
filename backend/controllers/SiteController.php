@@ -115,11 +115,14 @@ class SiteController extends Controller
 
            }
             //$model->value = Yii::$app->request->post('value2') ;
+            return $this->render('bgform', ['model' => $model]);
+        }else{
 
-
-        }
         return $this->render('bgform', ['model' => $model]);
+        }
+
     }
+
 
     public function actionPdf()
     {   //$searchModel = new OtdelsSearch();
