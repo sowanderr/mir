@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: tolkushkin
+ * Date: 19.02.16
+ * Time: 16:44
+ */
 namespace backend\models;
 use yii;
 use yii\base\Model;
@@ -6,7 +12,7 @@ use yii\base\Model;
 
 
 
-class BgForm extends Model
+class ShablonForm extends Model
 {
     public $dir;
     public $value= [];
@@ -28,19 +34,20 @@ class BgForm extends Model
             'divn' => 'Количество блоков',
         ];
     }
-    public function BgForm()
-    {
 
-       $this->value = array_shift(array_reverse(array_unique($this->value))); // оставляем уникальные значения масива, переварачиваем, извлекаем первый. + экранируем от пробелов
-        $this->value =  addcslashes($this->value, ' ');
-
-        return true ;
-    }
     public function setDir(){
         $dir = './uploads';
         $s1 = array_slice(scandir($dir),2);
         $this->dir = $s1;
         return true;
+    }
+    public function BgForm()
+    {
+
+        $this->value = array_shift(array_reverse(array_unique($this->value))); // оставляем уникальные значения масива, переварачиваем, извлекаем первый. + экранируем от пробелов
+        $this->value =  addcslashes($this->value, ' ');
+
+        return true ;
     }
 
 

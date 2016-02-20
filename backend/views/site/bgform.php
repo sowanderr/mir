@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 /* @var $model backend\models\BgForm */
 /* @var $form ActiveForm */
 ?>
-<?php Pjax::begin(); ?>
+
 <div class="site-bgform">
 
     <?php $form = ActiveForm::begin(['options' => [
@@ -53,20 +53,7 @@ use yii\widgets\Pjax;
 
 </div>
 </div><!-- site-bgform -->
-    <div class="col-lg-12" style="width:100%;height:100%; z-index:1; padding-right: 100px; background-image: url(<?php echo Url::to("uploads/$model->value")?>); background-color: #c7b39b; min-height: <?= Html::encode($model->min)?>px; background-size: 100%; background-repeat: no-repeat; ">
-        <?php CKEditorInline::begin(['preset' => 'full']);?>
-            <?php
 
-
-
-            for($a=1;$a<=$model->divn;$a++) {
-            echo $model->div;
-            }
-        ?>
-
-            <?php CKEditorInline::end();?>
-
-            </div>
 
 
 
@@ -78,4 +65,3 @@ use yii\widgets\Pjax;
 
 ?>
 
-<?php Pjax::end(); ?>

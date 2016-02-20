@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 use backend\models\BgForm;
+use backend\models\ShablonForm;
 use Yii;
 use yii\web\Controller;
 use backend\models\UploadForm;
@@ -106,20 +107,15 @@ class SiteController extends Controller
 
         if ($model->load(Yii::$app->request->post())&& $model->validate()) {
 
-           if( 1) {
-               //$model->value = '123';
-               Yii::$app->session->setFlash(
-                   'success',
-                   'Спасибо все ок '
-               );
+            return $this->render('div', ['model' => $model]);
 
-           }
             //$model->value = Yii::$app->request->post('value2') ;
-            return $this->render('bgform', ['model' => $model]);
-        }else{
 
-        return $this->render('bgform', ['model' => $model]);
+        }else {
+            return $this->render('bgform', ['model' => $model]);
+
         }
+
 
     }
 
@@ -138,8 +134,8 @@ class SiteController extends Controller
     }
     public function actionDiv()
     {
-        $model = new BgForm();
-        return $this->render('bgform', ['model' => $model]);
+        $model = new ShablonForm();
+        return $this->render('shablon', ['model' => $model]);
 
     }
     public function actionShow(){
