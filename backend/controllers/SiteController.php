@@ -103,10 +103,11 @@ class SiteController extends Controller
     }
     public function actionBg()
     {
+
         $model = new BgForm();
 
         if ($model->load(Yii::$app->request->post())&& $model->validate()) {
-
+            $this->layout = 'pdf';
             return $this->render('div', ['model' => $model]);
 
             //$model->value = Yii::$app->request->post('value2') ;
